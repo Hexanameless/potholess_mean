@@ -118,6 +118,7 @@ app.post("/contacts", function(req, res) {
 
 app.post("/file", function(req, res) {
     var newFile = req.body;
+    console.log(req);
     
     db.collection(FILES_COLLECTION).insertOne(newContact, function(err, doc) {
         if (err) {
