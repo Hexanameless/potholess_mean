@@ -120,7 +120,7 @@ app.post("/file", function(req, res) {
     var newFile = req.body;
     console.log(req);
     
-    db.collection(FILES_COLLECTION).insertOne(newContact, function(err, doc) {
+    db.collection(FILES_COLLECTION).insertOne(newFile, function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to create new File.");
         } else {
