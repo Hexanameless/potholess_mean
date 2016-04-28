@@ -1,5 +1,5 @@
 {
-  "name": "potholess",
+  "name": "potholess_mean",
   "version": "1.0.0",
   "description": "A MEAN app",
   "main": "server.js",
