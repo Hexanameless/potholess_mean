@@ -5,6 +5,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
+var FILES_COLLECTION = "files";
 
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -109,3 +110,21 @@ app.post("/contacts", function(req, res) {
      }
    });
  });
+
+/*  "/file"
+ *      GET: read all the position / bump data
+ *      POST: add a new file in the database
+ */
+
+app.post("/file", function(req, res) {
+    var newFile = req.body;
+    
+    db.collection(FILES_COLLECTION).insertOne(newContact, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new File.");
+        } else {
+            res.status(201).json(doc.ops[0]);
+        }
+    });
+});
+                                                 
