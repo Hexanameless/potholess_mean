@@ -1,7 +1,7 @@
 var mongoose =  require('mongoose');
 
 var VibrationSchema = new mongoose.Schema({
-    date: String,
+    date: Date,
     lat: Number,
     lng: Number,
     val: Number
