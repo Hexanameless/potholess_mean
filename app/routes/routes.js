@@ -1,5 +1,5 @@
 var contactsController = require('../controllers/contacts');
-var datasController = require('../controllers/datas');
+var vibrationsController = require('../controllers/vibrations');
 var router = require('express').Router();
 
 router.route('/contacts')
@@ -11,9 +11,9 @@ router.route('/contacts/:id')
   .delete(contactsController.remove)
   .put(contactsController.update);
 
- router.route('/datas')
-  .post(datasController.create)
-  .delete(datasController.removeAll)
-  .get(datasController.listAll);
+ router.route('/vibrations')
+  .post(vibrationsController.create)
+  .delete(vibrationsController.removeAll)
+  .get(vibrationsController.listAll);
 
 module.exports = router;
