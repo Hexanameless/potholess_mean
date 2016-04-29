@@ -12,10 +12,16 @@ Lancer la base de données MongoDB
 
 Lancer le serveur
 
-``node serveur.js``
+``npm start`` - si npm installé
+
+``node server.js`` - sinon
 
 Si vous rencontrez une erreur lors du lancement de la base de données
 
 ``npm i``
 
-``node serveur.js``
+puis relancez le serveur 
+
+``npm start`` - si npm installé
+
+``node server.js`` - sinon

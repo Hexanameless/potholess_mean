@@ -1,6 +1,6 @@
 angular.module('potholess')
 .service("Vibrations", function($http) {
-    this.getVibrations = function() {
+    this.getAllVibrations = function() {
         return $http.get("/vibrations").
             then(function(response) {
                 return response;
@@ -23,6 +23,14 @@ angular.module('potholess')
             }, function(response) {
                 alert("Error deleting vibrations.");
                 console.log(response);
+            });
+    };
+    this.findVibrations = function(data) {
+        return $http.post("/vibrations/find", data).
+            then(function(response) {
+                return response;
+            }, function(response) {
+                alert("Error finding corresponding vibrations.");
             });
     };
 });

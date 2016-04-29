@@ -23,13 +23,18 @@ angular.module("potholess", ['ngRoute', 'leaflet-directive'])
             controller: "VibrationsController",
             resolve: {
                 vibrations: function(Vibrations) {
-                    return Vibrations.getVibrations();
+                    return Vibrations.getAllVibrations();
                 }
             }
         })
         .when("/map", {
             templateUrl: "views/leaflet-map.html",
-            controller: "MapController"
+            controller: "MapController",
+            resolve: {
+                vibrations: function(Vibrations) {
+                    return Vibrations.getAllVibrations();
+                }
+            }
         })
         .otherwise({
             redirectTo: "/"
@@ -37,9 +42,9 @@ angular.module("potholess", ['ngRoute', 'leaflet-directive'])
 })
 
 
-.controller("ListController", function(contacts, $scope) {
-    $scope.contacts = contacts.data;
-})
+    .controller("ListController", function(contacts, $scope) {
+        $scope.contacts = contacts.data;
+    })
 
 .controller("NewContactController", function($scope, $location, Contacts) {
     $scope.back = function() {

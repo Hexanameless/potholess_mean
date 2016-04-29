@@ -1,5 +1,5 @@
 angular.module('potholess')
-.controller("MapController", [ '$scope', function($scope) {
+.controller("MapController", function(vibrations, $scope) {
 
     //centre la map sur Lyon
     angular.extend($scope, {
@@ -10,5 +10,14 @@ angular.module('potholess')
         }
     });
 
+    //récupère la liste des vibrations de la bd
+    $scope.vibrations = vibrations.data;
 
-}]);
+    $scope.addPoints = function() {
+        L.circle([45.779072,4.841700], 3, {
+  			color: 'red',
+  			fillColor: '#f03',
+  			fillOpacity: 0.5
+  		}).addTo(document.getElementById('mapid'));
+    };
+});
