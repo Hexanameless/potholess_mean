@@ -1,0 +1,8 @@
+body  {
+    padding: 0;
+}
+
+.map-size {
+    width: inherit;
+    height: inherit;
+}
