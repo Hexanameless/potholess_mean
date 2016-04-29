@@ -12,7 +12,7 @@ router.route('/contacts/:id')
   .put(contactsController.update);
 
  router.route('/vibrations')
-  .post(vibrationsController.create)
+  .post(vibrationsController.insertMultiple)
   .delete(vibrationsController.removeAll)
   .get(vibrationsController.listAll);
 

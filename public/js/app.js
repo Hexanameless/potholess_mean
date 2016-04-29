@@ -151,28 +151,28 @@ angular.module("contactsApp", ['ngRoute'])
             Contacts.deleteContact(contactId);
         }
     })
-    .controller("VibrationsController", function(vibrations, $scope, Vibrations) {
+    .controller("VibrationsController", function(vibrations, $scope, $route, Vibrations) {
         $scope.vibrations = vibrations.data;
 
-        var exampleVibration = {
-                0: {
-                    date: 0,
+        var tabExampleVibration = [
+                {
+                    date: "2016-29-4",
                     lat: 0,
                     lng: 0,
                     val: 0
                 },
-                1: {
-                    date: 1,
+                {
+                    date: "2016-29-4",
                     lat: 1,
                     lng: 1,
                     val: 1
                 }
-            };
+            ];
 
         $scope.createVibration = function() {
-            Vibrations.createVibration(exampleVibration).then(function(doc) {
+            Vibrations.createVibration(tabExampleVibration).then(function(doc) {
                 console.log(doc);
-                $scope.vibrations.push(doc.data);
+                $route.reload();
             }, function(response) {
                 alert(response);
             });
@@ -181,6 +181,7 @@ angular.module("contactsApp", ['ngRoute'])
         $scope.deleteVibrations = function(contactId) {
             Vibrations.deleteVibrations().then(function(doc) {
                 console.log(doc);
+                $route.reload();
             }, function(response) {
                 alert(response);
             });

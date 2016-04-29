@@ -7,6 +7,14 @@ function handleError(res, reason, message, code) {
 }
 
 exports.create = function(req, res, next) {
+  console.log(req.body);
+  var date = req.body.date;
+  console.log(date);
+  var newDate = new Date(date);
+  console.log(newDate);
+
+  var newVibration = new Vibration(req.body);
+
     newVibration.save(function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to create new vibration.");
@@ -14,6 +22,16 @@ exports.create = function(req, res, next) {
             res.status(201).json(doc);
         }
     });
+};
+
+exports.insertMultiple = function(req, res, next) {
+  Vibration.collection.insert(req.body, function(err, doc) {
+      if (err) {
+          handleError(res, err.message, "Failed to create new vibration.");
+      } else {
+          res.status(201).json(doc);
+      }
+  });
 };
 
 exports.createMultiple = function(req, res, next) {
