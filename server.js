@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 // *** routes *** //
 var routes = require('./app/routes/routes.js');
 
-mongoose.connect('mongodb://localhost/local');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/local');
 
 var app = express();
 app.use(express.static(__dirname + "/public"));
