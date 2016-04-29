@@ -18,12 +18,12 @@ angular.module("contactsApp", ['ngRoute'])
                 controller: "EditContactController",
                 templateUrl: "contact.html"
             })
-            .when("/datas", {
-                templateUrl: "datas.html",
-                controller: "DatasController",
+            .when("/vibrations", {
+                templateUrl: "vibrations.html",
+                controller: "VibrationsController",
                 resolve: {
-                    datas: function(Datas) {
-                        return Datas.getDatas();
+                    vibrations: function(Vibrations) {
+                        return Vibrations.getVibrations();
                     }
                 }
             })
@@ -80,29 +80,29 @@ angular.module("contactsApp", ['ngRoute'])
         };
 
     })
-    .service("Datas", function($http) {
-        this.getDatas = function() {
-            return $http.get("/datas").
+    .service("Vibrations", function($http) {
+        this.getVibrations = function() {
+            return $http.get("/vibrations").
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error finding datas.");
+                    alert("Error finding vibrations.");
                 });
         };
-        this.createData = function(data) {
-            return $http.post("/datas", data).
+        this.createVibration = function(data) {
+            return $http.post("/vibrations", data).
                 then(function(response) {
                     return response;
                 }, function(response) {
                     alert("Error creating data.");
                 });
         };
-        this.deleteDatas = function() {
-            return $http.delete("datas").
+        this.deleteVibrations = function() {
+            return $http.delete("vibrations").
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error deleting datas.");
+                    alert("Error deleting vibrations.");
                     console.log(response);
                 });
         };
@@ -151,27 +151,37 @@ angular.module("contactsApp", ['ngRoute'])
             Contacts.deleteContact(contactId);
         }
     })
-    .controller("DatasController", function(datas, $scope, Datas) {
-        $scope.datas = datas.data;
+    .controller("VibrationsController", function(vibrations, $scope, $route, Vibrations) {
+        $scope.vibrations = vibrations.data;
 
-        var exampleData = {
-                    latitude: 1,
-                    longitude:2,
-                    magnitude: 3
-                };
+        var tabExampleVibration = [
+                {
+                    date: "2016-29-4",
+                    lat: 0,
+                    lng: 0,
+                    val: 0
+                },
+                {
+                    date: "2016-29-4",
+                    lat: 1,
+                    lng: 1,
+                    val: 1
+                }
+            ];
 
-        $scope.createData = function() {
-            Datas.createData(exampleData).then(function(doc) {
+        $scope.createVibration = function() {
+            Vibrations.createVibration(tabExampleVibration).then(function(doc) {
                 console.log(doc);
-                $scope.datas.push(doc.data);
+                $route.reload();
             }, function(response) {
                 alert(response);
             });
         };
 
-        $scope.deleteDatas = function(contactId) {
-            Datas.deleteDatas().then(function(doc) {
+        $scope.deleteVibrations = function(contactId) {
+            Vibrations.deleteVibrations().then(function(doc) {
                 console.log(doc);
+                $route.reload();
             }, function(response) {
                 alert(response);
             });
