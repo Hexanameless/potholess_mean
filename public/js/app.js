@@ -27,6 +27,10 @@ angular.module("contactsApp", ['ngRoute'])
                     }
                 }
             })
+            .when("/map", {
+                templateUrl: "map.html"
+                
+            })
             .otherwise({
                 redirectTo: "/"
             });
@@ -153,7 +157,7 @@ angular.module("contactsApp", ['ngRoute'])
     })
     .controller("VibrationsController", function(vibrations, $scope, Vibrations) {
         $scope.vibrations = vibrations.data;
-
+// gestion vibration ici
         var exampleVibration = {
                 0: {
                     date: 0,
