@@ -1,22 +1,8 @@
-<html>
-<head>
-	<title>Lyon Map Test</title>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-	<link rel="stylesheet" href="./leaflet/leaflet.css" />
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-</head>
-<body>
-  <h1>Welcome to Smart City App </h1>
-  <hr color="grey">
+	<h1>Map</h1>
+	<hr color="grey">
+	<leaflet width="100%" height="100%" lf-center="center"></leaflet>
+  <!--
 	<div id="mapid" style="width:800px;height:600px"></div>
 	<script src="./leaflet/leaflet.js"></script>
 	<script>
@@ -31,7 +17,7 @@
 		/**
 L.polygon([[45.779072,4.841700],[45.778987,4.841641],[45.778288,4.843427],[45.778344,4.843459]]).addTo(mymap);
 		**/
-    
+
      function addPoint(lat, long, accel, time) {
       L.circle([lat,long], 3, {
 			color: 'red',
@@ -43,21 +29,21 @@ L.polygon([[45.779072,4.841700],[45.778987,4.841641],[45.778288,4.843427],[45.77
      function convertAccelToColor (accel){
        return 'red';
      } ;
-     
+
      addPoint(45.779072,4.841705,0,0 );
-    
+
 		L.circle([45.779072,4.841700], 3, {
 			color: 'red',
 			fillColor: '#f03',
 			fillOpacity: 1
 		}).addTo(mymap);
-    
+
 		L.circle([45.778288,4.843427], 3, {
 			color: 'blue',
 			fillColor: '#f03',
 			fillOpacity: 0.5
 		}).addTo(mymap);
-    
+
     function addPoint(lat, long, accel, time) {
       L.circle([45.779072,4.841700], 3, {
 			color: 'red',
@@ -67,5 +53,4 @@ L.polygon([[45.779072,4.841700],[45.778987,4.841641],[45.778288,4.843427],[45.77
   };
 
 	</script>
-</body>
-</html>
+-->

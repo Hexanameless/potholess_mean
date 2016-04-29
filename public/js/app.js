@@ -1,4 +1,4 @@
-angular.module("contactsApp", ['ngRoute'])
+angular.module("contactsApp", ['ngRoute', 'leaflet-directive'])
     .config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -28,8 +28,8 @@ angular.module("contactsApp", ['ngRoute'])
                 }
             })
             .when("/map", {
-                templateUrl: "map.html"
-                
+                templateUrl: "map.html",
+                controller: "SimpleMapController"
             })
             .otherwise({
                 redirectTo: "/"
@@ -114,6 +114,15 @@ angular.module("contactsApp", ['ngRoute'])
     .controller("ListController", function(contacts, $scope) {
         $scope.contacts = contacts.data;
     })
+    .controller("SimpleMapController", [ '$scope', function($scope) {
+        angular.extend($scope, {
+            center: {
+                lat: 45.759722,
+                lng: 4.84222,
+                zoom: 13
+            }
+        });
+    }])
     .controller("NewContactController", function($scope, $location, Contacts) {
         $scope.back = function() {
             $location.path("#/");
