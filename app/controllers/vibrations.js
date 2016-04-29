@@ -25,6 +25,7 @@ exports.create = function(req, res, next) {
 };
 
 exports.insertMultiple = function(req, res, next) {
+  console.log(req.files.displayImage());
   Vibration.collection.insert(req.body, function(err, doc) {
       if (err) {
           handleError(res, err.message, "Failed to create new vibration.");
