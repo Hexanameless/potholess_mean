@@ -67,23 +67,23 @@ angular.module("potholess", ['ngRoute'])
         alert(response);
     });
 
-    $scope.toggleEdit = function() {
-        $scope.editMode = true;
-        $scope.contactFormUrl = "contact-form.html";
-    }
+        $scope.toggleEdit = function() {
+            $scope.editMode = true;
+            $scope.contactFormUrl = "contact-form.html";
+        }
 
-    $scope.back = function() {
-        $scope.editMode = false;
-        $scope.contactFormUrl = "";
-    }
+        $scope.back = function() {
+            $scope.editMode = false;
+            $scope.contactFormUrl = "";
+        }
 
-    $scope.saveContact = function(contact) {
-        Contacts.editContact(contact);
-        $scope.editMode = false;
-        $scope.contactFormUrl = "";
-    }
+        $scope.saveContact = function(contact) {
+            Contacts.editContact(contact);
+            $scope.editMode = false;
+            $scope.contactFormUrl = "";
+        }
 
-    $scope.deleteContact = function(contactId) {
-        Contacts.deleteContact(contactId);
-    }
+        $scope.deleteContact = function(contactId) {
+            Contacts.deleteContact(contactId);
+        }
 });
