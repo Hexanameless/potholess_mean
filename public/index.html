@@ -31,11 +31,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Create some padding for body -->
-    <style>
-      body {
-        padding-top: 55px;
-      }
-    </style>
+
   </head>
 
   <body>
@@ -44,15 +40,14 @@
         <div class="navbar-header">
           <div class="navbar-brand" href="#/">potholess</div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Home</a></li>
-          </ul>
-        </div>
       </div>
     </nav>
     <!-- Dynamically render templates -->
-    <div class="container" ng-view>
+    <div class="container" style="padding-top:8vh; "ng-view>
+    </div>
+
+    <div class="container footer">
+        &copy; 2016, Hexanameless, une équipe INSA Lyon
     </div>
   </body>
 </html>

@@ -4,5 +4,13 @@ body  {
 
 .map-size {
     width: 100%;
-    height: 600px;
+    height: 91vh;
+}
+
+.footer {
+    height: 40px;
+    color: grey;
+    vertical-align: middle;
+    text-align: right;
+    padding-top: 10px;
 }
