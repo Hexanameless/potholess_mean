@@ -16,7 +16,7 @@ angular.module('potholess')
     //récupère la map
     var mymap = L.map('mapid').setView([45.759722, 4.84222], 13);
     //définition des couleurs
-    var couleurs = ['green', 'yellow', 'orange', 'red', 'black'];
+    couleurs = ['green', 'yellow', 'orange', 'red', 'black'];
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -25,6 +25,14 @@ angular.module('potholess')
         id: 'mapbox.streets'
     }).addTo(mymap);
     addPoints();
+
+    //slider
+    $scope.formMap = {};
+    $scope.formMap.sliderValue = 1;
+    $scope.$watch('formMap.sliderValue', function() {
+        $scope.couleurSlider = {color : couleurs[Math.round($scope.formMap.sliderValue)-1] };
+    });
+
 
     //ajoute les points de $scope.vibrations à la map
     function addPoints() {
