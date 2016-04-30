@@ -1,4 +1,4 @@
-angular.module("potholess", ['ngRoute', 'leaflet-directive'])
+angular.module("potholess", ['ngRoute'])
 .config(function($routeProvider) {
     $routeProvider
         .when("/", {

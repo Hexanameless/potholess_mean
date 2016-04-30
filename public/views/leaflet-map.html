@@ -1,8 +1,28 @@
+	<div class="row">
+		<div class="col-sm-2" style="margin-bottom:5px">
+			<form>
+  				<div class="form-group">
+					<label>Date début</label>
+					<input type="date" ng-model="formMap.dateDebut" class="form-control"/>
+				</div>
+				<div class="form-group">
+					<label>Date fin</label>
+					<input type="date" ng-model="formMap.dateFin" class="form-control"/>
+				</div>
+				<div class="form-group">
+					<label>Intensité : <span ng-style="couleurSlider">{{formMap.sliderValue}}</span></label>
+					<input type="range" min="1" max="5" step="0.1" ng-model="formMap.sliderValue"/>
+				</div>
+				<button type="submit" class="btn btn-primary">Valider</button>
+			</form>
+		</div>
 
-	<h1>Map</h1>
-	<hr color="grey">
-	<leaflet id="mapid" width="100%" height="500px" lf-center="center"></leaflet>
-	<button class="btn btn-default" ng-click="addPoints()">Add point</button>
+		<div class="col-sm-10">
+			<div id="mapid" class="map-size"></div>
+		</div>
+
+	</div>
+
   <!--
 	<div id="mapid" style="width:800px;height:600px"></div>
 	<script src="./leaflet/leaflet.js"></script>
