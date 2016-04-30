@@ -10,8 +10,7 @@ exports.insertMultiple = function(req, res, next) {
   // pré-traitement sur les dates
   // on convertit les strings en objet Date
   for(var i=0 ; i<req.body.length ; i++) {
-    var splittedDate = req.body[i].date.split('-');
-    var newDate = new Date(splittedDate[0]+'-'+splittedDate[2]+'-'+splittedDate[1]);
+    var newDate = new Date(req.body[i].date);
     req.body[i].date = newDate;
   }
 
