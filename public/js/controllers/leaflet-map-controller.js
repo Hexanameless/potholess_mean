@@ -1,5 +1,9 @@
 angular.module('potholess')
-.controller("MapController", function(vibrations, Vibrations, $scope, $routeParams, $filter) {
+.controller("MapController", function(vibrations, Vibrations, OpenStreetMap, $rootScope, $scope, $routeParams, $filter) {
+
+    $rootScope.$on('Travaux_OK', function(event, args) {
+        $scope.travaux = args.features;
+    });
 
     //centre la map sur Lyon
     angular.extend($scope, {
@@ -16,6 +20,7 @@ angular.module('potholess')
     //récupère la map
     var mymap = L.map('mapid').setView([45.759722, 4.84222], 13);
     var circles;
+    var polygons;
 
     //définition des couleurs
     couleurs = ['green', 'yellow', 'orange', 'red', 'black'];
@@ -49,6 +54,16 @@ angular.module('potholess')
             circle.bindPopup("<b>Date : </b>"+$filter('date')($scope.vibrations[i].date, 'dd/MM/yyyy') + "<br>"+"<b>Intensité : </b>"+$scope.vibrations[i].val);
         }
         circles.addTo(mymap);
+    }
+
+    var city, road;
+    $scope.reverseLocation = function(lat, lng) {
+        OpenStreetMap.reverseLocation(lat, lng).then(function(doc) {
+            city = doc.data.address.city;
+            road = doc.data.address.road;
+        }, function(response) {
+            alert(response);
+        });
     };
 
     //get vibrations selon le formulaire
@@ -64,12 +79,27 @@ angular.module('potholess')
 
     //Gestion des travaux
     $scope.travauxAffiche = false;
-    
-    $scope.showTravaux = function() {
-        $scope.travauxAffiche = !$scope.travauxAffiche;
-    }
 
     $scope.hideTravaux = function() {
         $scope.travauxAffiche = !$scope.travauxAffiche;
+        mymap.removeLayer(polygons);
     }
+
+    $scope.showTravaux = function() {
+        $scope.travauxAffiche = !$scope.travauxAffiche;
+        polygons = L.layerGroup();
+        var chantier;
+        var polygon;
+        for(var i=0; i<$scope.travaux.length; i++) {
+            chantier = [];
+            for(var j=0; j<$scope.travaux[i].geometry.coordinates.length; j++) {
+                for(var k=0; k<$scope.travaux[i].geometry.coordinates[j].length; k++) {
+                    chantier.push([ $scope.travaux[i].geometry.coordinates[j][k][1] , $scope.travaux[i].geometry.coordinates[j][k][0] ]);
+                }
+
+            }
+            polygon = L.polygon(chantier).addTo(polygons);
+        }
+        polygons.addTo(mymap);
+    };
 });
