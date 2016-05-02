@@ -1,5 +1,5 @@
 angular.module('potholess')
-.controller("MapController", function(vibrations, Vibrations, OpenStreetMap, GrandLyon, $rootScope, $scope, $routeParams, $filter) {
+.controller("MapController", function(vibrations, Vibrations, OpenStreetMap, GrandLyon, $timeout, $rootScope, $scope, $routeParams, $filter) {
 
     $scope.travauxLoaded = false;
 
@@ -7,7 +7,6 @@ angular.module('potholess')
     $rootScope.$on('Travaux_OK', function(event, args) {
         $scope.travaux = args.features;
         $scope.travauxLoaded = true;
-        console.log("on",$scope.travaux);
     });
 
     //centre la map sur Lyon
@@ -71,8 +70,13 @@ angular.module('potholess')
         });
     };
 
+    $scope.texteValider = "Valider";
+    $scope.vibrationsLoaded = true;
+
     //get vibrations selon le formulaire
     $scope.getVibrations = function(filters) {
+        $scope.texteValider = "Chargement";
+        $scope.vibrationsLoaded = false;
         Vibrations.getVibrations(filters.val, $filter('date')(filters.minDate, 'yyyy-MM-dd'), $filter('date')(filters.maxDate, 'yyyy-MM-dd')).then(function(doc) {
             $scope.vibrations = doc.data;
             mymap.removeLayer(circles);
@@ -80,17 +84,24 @@ angular.module('potholess')
         }, function(response) {
             alert(response);
         });
+        $scope.texteValider = "Valider";
+        $scope.vibrationsLoaded = true;
     };
 
     //Gestion des travaux
+    $scope.texteHide = "Masquer travaux";
+    $scope.texteShow = "Afficher travaux";
     $scope.travauxAffiche = false;
 
     $scope.hideTravaux = function() {
+        $scope.texteHide = "Chargement";
         $scope.travauxAffiche = !$scope.travauxAffiche;
         mymap.removeLayer(polygons);
+        $scope.texteHide = "Masquer travaux";
     }
 
     $scope.showTravaux = function() {
+        $scope.texteShow = "Chargement";
         $scope.travauxAffiche = !$scope.travauxAffiche;
         polygons = L.layerGroup();
         var chantier;
@@ -106,5 +117,6 @@ angular.module('potholess')
             polygon = L.polygon(chantier).addTo(polygons);
         }
         polygons.addTo(mymap);
+        $scope.texteShow = "Afficher travaux";
     };
 });
