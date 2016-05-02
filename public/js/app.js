@@ -2,11 +2,14 @@ angular.module("potholess", ['ngRoute'])
 .config(function($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "views/list.html",
-            controller: "ListController",
+            templateUrl: "views/leaflet-map.html",
+            controller: "MapController",
             resolve: {
-                contacts: function(Contacts) {
-                    return Contacts.getContacts();
+                travaux: function(GrandLyon) {
+                    return GrandLyon.getTravaux();
+                },
+                vibrations: function(Vibrations) {
+                    return Vibrations.getAllVibrations();
                 }
             }
         })
@@ -22,18 +25,6 @@ angular.module("potholess", ['ngRoute'])
             templateUrl: "views/vibrations.html",
             controller: "VibrationsController",
             resolve: {
-                vibrations: function(Vibrations) {
-                    return Vibrations.getAllVibrations();
-                }
-            }
-        })
-        .when("/map", {
-            templateUrl: "views/leaflet-map.html",
-            controller: "MapController",
-            resolve: {
-                travaux: function(GrandLyon) {
-                    return GrandLyon.getTravaux();
-                },
                 vibrations: function(Vibrations) {
                     return Vibrations.getAllVibrations();
                 }

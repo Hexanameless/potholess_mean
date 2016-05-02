@@ -33,22 +33,38 @@ exports.getAllVibrations = function (req, res, next) {
     });
 };
 
-exports.getAllVibrationsFromQuery = function(req, res, next) {
+exports.getVibrationsFromDate = function(req, res, next) {
   var query = Vibration.find({});
 
-  var valIsDefined = req.body.val !== undefined && req.body.val !== null;
-  var datesAreDefined = req.body.minDate !== undefined && req.body.minDate !== null && req.body.maxDate !== undefined && req.body.maxDate !== null;
+  var valIsDefined = req.params.val !== undefined && req.params.val !== null;
+  var datesAreDefined = (req.params.minDate !== undefined || req.params.minDate !== null) && (req.params.maxDate !== undefined || req.params.maxDate !== null);
 
   if(valIsDefined && !datesAreDefined) {
-    query = Vibration.find({}).where('val').gte(req.body.val);
+    query = Vibration.find({}).where('val').gte(req.params.val);
   } else if(!valIsDefined && datesAreDefined) {
-    query = Vibration.find({}).where('date').gte(req.body.minDate).lte(req.body.maxDate);
+    query = Vibration.find({}).where('date').gte(req.params.minDate).lte(req.params.maxDate);
   } else if(valIsDefined && datesAreDefined) {
     query = Vibration.find({})
-    .where('date').gte(req.body.minDate).lte(req.body.maxDate)
-    .where('val').gte(req.body.val);
+    .where('date').gte(req.params.minDate).lte(req.params.maxDate)
+    .where('val').gte(req.params.val);
   }
+  query.exec( function(err, docs) {
+        if (err) {
+            handleError(res, err.message, "Failed to get vibrations.");
+        } else {
+            res.status(201).json(docs);
+        }
+    });
+};
 
+exports.getVibrationsFromVal = function(req, res, next) {
+  var query = Vibration.find({});
+
+  var valIsDefined = req.params.val !== undefined && req.params.val !== null;
+
+  if(valIsDefined) {
+    query = Vibration.find({}).where('val').gte(req.params.val);
+  }
   query.exec( function(err, docs) {
         if (err) {
             handleError(res, err.message, "Failed to get vibrations.");

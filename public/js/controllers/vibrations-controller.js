@@ -57,9 +57,8 @@ angular.module('potholess')
         });
     };
 
-    $scope.findVibrations = function(vibration) {
-        Vibrations.findVibrations(vibration).then(function(doc) {
-            console.log(doc);
+    $scope.getVibrations = function(filters) {
+        Vibrations.getVibrations(val, minDate, maxDate).then(function(doc) {
             $scope.vibrations = doc.data;
         }, function(response) {
             alert(response);

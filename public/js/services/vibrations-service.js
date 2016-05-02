@@ -25,12 +25,18 @@ angular.module('potholess')
                 console.log(response);
             });
     };
-    this.findVibrations = function(data) {
-        return $http.post("/vibrations/find", data).
+    this.getVibrations = function(val, minDate, maxDate) {
+        if(minDate != null && maxDate != null) {
+            var url = "/vibrations/" + val + "/" + minDate + "/" + maxDate;
+        } else {
+            var url = "/vibrations/" + val;
+        }
+        
+        return $http.get(url).
             then(function(response) {
                 return response;
             }, function(response) {
-                alert("Error finding corresponding vibrations.");
+                alert("Error finding vibrations.");
             });
     };
 });
