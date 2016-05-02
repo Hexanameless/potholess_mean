@@ -45,8 +45,15 @@ angular.module('potholess')
     });
 
 
+    $scope.texteValider = "Valider";
+    $scope.vibrationsLoaded = true;
+
     //ajoute les points de $scope.vibrations à la map
     function addPoints() {
+
+        $scope.texteValider = "Chargement";
+        $scope.vibrationsLoaded = false;
+
         circles = L.layerGroup();
 
         for (var i = 0; i < $scope.vibrations.length; i++) {
@@ -58,6 +65,9 @@ angular.module('potholess')
             circle.bindPopup("<b>Date : </b>"+$filter('date')($scope.vibrations[i].date, 'dd/MM/yyyy') + "<br>"+"<b>Intensité : </b>"+$scope.vibrations[i].val);
         }
         circles.addTo(mymap);
+
+        $scope.texteValider = "Valider";
+        $scope.vibrationsLoaded = true;
     }
 
     var city, road;
@@ -70,13 +80,9 @@ angular.module('potholess')
         });
     };
 
-    $scope.texteValider = "Valider";
-    $scope.vibrationsLoaded = true;
-
     //get vibrations selon le formulaire
     $scope.getVibrations = function(filters) {
-        $scope.texteValider = "Chargement";
-        $scope.vibrationsLoaded = false;
+
         Vibrations.getVibrations(filters.val, $filter('date')(filters.minDate, 'yyyy-MM-dd'), $filter('date')(filters.maxDate, 'yyyy-MM-dd')).then(function(doc) {
             $scope.vibrations = doc.data;
             mymap.removeLayer(circles);
@@ -84,8 +90,6 @@ angular.module('potholess')
         }, function(response) {
             alert(response);
         });
-        $scope.texteValider = "Valider";
-        $scope.vibrationsLoaded = true;
     };
 
     //Gestion des travaux
