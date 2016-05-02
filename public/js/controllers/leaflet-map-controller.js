@@ -2,7 +2,6 @@ angular.module('potholess')
 .controller("MapController", function(vibrations, Vibrations, OpenStreetMap, $rootScope, $scope, $routeParams, $filter) {
 
     $rootScope.$on('Travaux_OK', function(event, args) {
-        console.log(args);
         $scope.travaux = args.features;
     });
     
@@ -78,6 +77,19 @@ angular.module('potholess')
 
     $scope.displayTravaux = function() {
         console.log($scope.travaux);
+
+        var chantier;
+        var polygon;
+        for(var i=0; i<$scope.travaux.length; i++) {
+            chantier = [];
+            for(var j=0; j<$scope.travaux[i].geometry.coordinates.length; j++) {
+                for(var k=0; k<$scope.travaux[i].geometry.coordinates[j].length; k++) {
+                    chantier.push([ $scope.travaux[i].geometry.coordinates[j][k][1] , $scope.travaux[i].geometry.coordinates[j][k][0] ]);
+                }
+
+            }
+            polygon = L.polygon(chantier).addTo(mymap);
+        }
     };
 
 });
