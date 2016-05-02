@@ -4,7 +4,7 @@ angular.module('potholess')
     $rootScope.$on('Travaux_OK', function(event, args) {
         $scope.travaux = args.features;
     });
-    
+
     //centre la map sur Lyon
     angular.extend($scope, {
         center: {
@@ -20,6 +20,7 @@ angular.module('potholess')
     //récupère la map
     var mymap = L.map('mapid').setView([45.759722, 4.84222], 13);
     var circles;
+    var polygons;
 
     //définition des couleurs
     couleurs = ['green', 'yellow', 'orange', 'red', 'black'];
@@ -35,7 +36,7 @@ angular.module('potholess')
     //slider
     $scope.formMap = {};
     $scope.formMap.val = 1;
-    $scope.$watch('formMap.sliderValue', function() {
+    $scope.$watch('formMap.val', function() {
         $scope.couleurSlider = {color : couleurs[Math.round($scope.formMap.val)-1] };
     });
 
@@ -50,6 +51,7 @@ angular.module('potholess')
                 color: colorVal,
                 fillOpacity: 0.8
             }).addTo(circles);
+            circle.bindPopup("<b>Date : </b>"+$filter('date')($scope.vibrations[i].date, 'dd/MM/yyyy') + "<br>"+"<b>Intensité : </b>"+$scope.vibrations[i].val);
         }
         circles.addTo(mymap);
     }
@@ -75,9 +77,17 @@ angular.module('potholess')
         });
     };
 
-    $scope.displayTravaux = function() {
-        console.log($scope.travaux);
+    //Gestion des travaux
+    $scope.travauxAffiche = false;
 
+    $scope.hideTravaux = function() {
+        $scope.travauxAffiche = !$scope.travauxAffiche;
+        mymap.removeLayer(polygons);
+    }
+
+    $scope.showTravaux = function() {
+        $scope.travauxAffiche = !$scope.travauxAffiche;
+        polygons = L.layerGroup();
         var chantier;
         var polygon;
         for(var i=0; i<$scope.travaux.length; i++) {
@@ -88,8 +98,8 @@ angular.module('potholess')
                 }
 
             }
-            polygon = L.polygon(chantier).addTo(mymap);
+            polygon = L.polygon(chantier).addTo(polygons);
         }
+        polygons.addTo(mymap);
     };
-
 });

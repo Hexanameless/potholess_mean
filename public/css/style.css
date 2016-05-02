@@ -1,5 +1,5 @@
 body  {
-    padding-top: 70px;
+    padding-top: 63px;
 }
 
 .map-size {
@@ -13,4 +13,9 @@ body  {
     vertical-align: middle;
     text-align: right;
     padding-top: 20px;
+}
+
+/*permet aux boutons "Afficher/Masquer bouton de rester à la même position"*/
+.marginless {
+    margin-top: 0 !important;
 }
