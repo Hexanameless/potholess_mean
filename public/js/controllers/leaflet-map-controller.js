@@ -1,6 +1,12 @@
 angular.module('potholess')
-.controller("MapController", function(vibrations, $scope) {
+.controller("MapController", function(vibrations, $scope, $rootScope, OpenStreetMap) {
 
+
+    $rootScope.$on('Travaux_OK', function(event, args) {
+        console.log(args);
+        $scope.travaux = args.features;
+    });
+    
     //centre la map sur Lyon
     angular.extend($scope, {
         center: {
@@ -43,5 +49,20 @@ angular.module('potholess')
                 fillOpacity: 0.8
             }).addTo(mymap);
         }
+    }
+
+    var city, road;
+    $scope.reverseLocation = function(lat, lng) {
+        OpenStreetMap.reverseLocation(lat, lng).then(function(doc) {
+            city = doc.data.address.city;
+            road = doc.data.address.road;
+        }, function(response) {
+            alert(response);
+        });
     };
+
+    $scope.displayTravaux = function() {
+        console.log($scope.travaux);
+    };
+
 });
