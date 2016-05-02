@@ -61,4 +61,15 @@ angular.module('potholess')
             alert(response);
         });
     };
+
+    //Gestion des travaux
+    $scope.travauxAffiche = false;
+    
+    $scope.showTravaux = function() {
+        $scope.travauxAffiche = !$scope.travauxAffiche;
+    }
+
+    $scope.hideTravaux = function() {
+        $scope.travauxAffiche = !$scope.travauxAffiche;
+    }
 });
