@@ -31,7 +31,7 @@ angular.module('potholess')
     //slider
     $scope.formMap = {};
     $scope.formMap.val = 1;
-    $scope.$watch('formMap.sliderValue', function() {
+    $scope.$watch('formMap.val', function() {
         $scope.couleurSlider = {color : couleurs[Math.round($scope.formMap.val)-1] };
     });
 
@@ -46,6 +46,7 @@ angular.module('potholess')
                 color: colorVal,
                 fillOpacity: 0.8
             }).addTo(circles);
+            circle.bindPopup("<b>Date : </b>"+$filter('date')($scope.vibrations[i].date, 'dd/MM/yyyy') + "<br>"+"<b>Intensité : </b>"+$scope.vibrations[i].val);
         }
         circles.addTo(mymap);
     };
