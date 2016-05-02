@@ -1,6 +1,6 @@
 angular.module('potholess')
 .controller("MapController", function(vibrations, Vibrations, OpenStreetMap, $rootScope, $scope, $routeParams, $filter) {
-
+    GrandLyon.getTravaux();
     $rootScope.$on('Travaux_OK', function(event, args) {
         $scope.travaux = args.features;
         console.log("on",$scope.travaux);
