@@ -16,7 +16,10 @@ router.route('/vibrations')
 	.delete(vibrationsController.deleteAll)
 	.get(vibrationsController.getAllVibrations);
 
-router.route('/vibrations/find')
-	.post(vibrationsController.getAllVibrationsFromQuery);
+router.route('/vibrations/:val/:minDate/:maxDate')
+	.get(vibrationsController.getVibrationsFromDate);
+
+router.route('/vibrations/:val')
+	.get(vibrationsController.getVibrationsFromVal);
 
 module.exports = router;
