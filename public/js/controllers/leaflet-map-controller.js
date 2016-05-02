@@ -1,9 +1,12 @@
 angular.module('potholess')
 .controller("MapController", function(vibrations, Vibrations, OpenStreetMap, GrandLyon, $rootScope, $scope, $routeParams, $filter) {
 
+    $scope.travauxLoaded = false;
+
     GrandLyon.getTravaux();
     $rootScope.$on('Travaux_OK', function(event, args) {
         $scope.travaux = args.features;
+        $scope.travauxLoaded = true;
         console.log("on",$scope.travaux);
     });
 

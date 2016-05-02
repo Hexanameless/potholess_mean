@@ -5,9 +5,6 @@ angular.module("potholess", ['ngRoute'])
             templateUrl: "views/leaflet-map.html",
             controller: "MapController",
             resolve: {
-                // travaux: function(GrandLyon) {
-                //     return GrandLyon.getTravaux();
-                // },
                 vibrations: function(Vibrations) {
                     return Vibrations.getAllVibrations();
                 }
