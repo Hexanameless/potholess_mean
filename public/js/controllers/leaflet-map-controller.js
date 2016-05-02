@@ -3,6 +3,7 @@ angular.module('potholess')
 
     $rootScope.$on('Travaux_OK', function(event, args) {
         $scope.travaux = args.features;
+        console.log("on",$scope.travaux);
     });
 
     //centre la map sur Lyon
