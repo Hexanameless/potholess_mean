@@ -39,18 +39,45 @@
 
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
           <div class="navbar-brand" href="#/">potholess</div>
         </div>
-      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="information" href="" data-toggle="modal" data-target=".myModal"><span class="glyphicon glyphicon-question-sign"></span> &#192; propos </a></li>
+        </ul>
+        </div>
     </nav>
+   
+<div class="container-fluid">
     <!-- Dynamically render templates -->
-    <div class="container" ng-view>
+    <div ng-view>
     </div>
 
-    <div class="container footer">
+    <div class="footer">
         &copy; 2016, Hexanameless, une équipe INSA Lyon
     </div>
+
+</div>
+
+     <!-- Modal -->
+    <div class="modal fade myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
