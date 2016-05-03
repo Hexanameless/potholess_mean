@@ -4,15 +4,15 @@ body  {
 
 .map-size {
     width: 100%;
-    height: 89vh;
+    height: 87vh;
 }
 
 .footer {
-    height: 50px;
+    height: 30px;
     color: grey;
     vertical-align: middle;
     text-align: right;
-    padding-top: 20px;
+    padding-top: 16px;
 }
 
 /*permet aux boutons "Afficher/Masquer bouton de rester à la même position"*/
@@ -23,6 +23,26 @@ body  {
 .glyphicon.spinning {
     animation: spin 1s infinite linear;
     -webkit-animation: spin2 1s infinite linear;
+}
+
+
+span.glyphicon-question-sign {
+    font-size: 1.3em;
+    top: 3px;
+}
+
+a.information:focus {
+    outline: none;
+    color: #777!important;
+}
+
+a.information:hover {
+    outline: none;
+    color: #333!important;
+}
+
+.btn:focus {
+    outline: none;
 }
 
 @keyframes spin {
@@ -40,4 +60,4 @@ body  {
     to {
         -webkit-transform: rotate(360deg);
     }
-}  
+}
