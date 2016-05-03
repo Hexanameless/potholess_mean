@@ -102,7 +102,7 @@ angular.module('potholess')
         $scope.travauxAffiche = !$scope.travauxAffiche;
         mymap.removeLayer(polygons);
         $scope.texteHide = "Masquer travaux";
-    }
+    };
 
     $scope.showTravaux = function() {
         $scope.texteShow = "Chargement";
