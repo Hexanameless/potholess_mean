@@ -22,4 +22,7 @@ router.route('/vibrations/:val/:minDate/:maxDate')
 router.route('/vibrations/:val')
 	.get(vibrationsController.getVibrationsFromVal);
 
+router.route('/vibrations/:minLat/:minLng/:maxLat/:maxLng')
+		.get(vibrationsController.getVibrationsFromLatLng);
+
 module.exports = router;

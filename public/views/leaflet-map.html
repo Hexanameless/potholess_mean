@@ -1,10 +1,10 @@
 	<div class="row">
 		<div class="col-sm-2" style="margin-bottom:5px">
-		
+
 			<button class="btn btn-info btn-block marginless" ng-hide="satAffiche" ng-click="showSat()">Mode satellite</button>
 			<button class="btn btn-warning btn-block marginless"  ng-show="satAffiche" ng-click="hideSat()">Mode classique</button>
 			<hr>
-			
+
 			<button class="btn btn-info btn-block marginless" ng-hide="travauxAffiche" ng-click="showTravaux()" ng-class="travauxLoaded ? '' : 'disabled'">
 				<span ng-show="texteShow == 'Chargement'">
 					<i class="glyphicon glyphicon-refresh spinning"></i>
@@ -33,6 +33,8 @@
 					<label>Intensité : <span ng-style="couleurSlider">{{formMap.val}}</span></label>
 					<input type="range" min="1" max="5" step="0.1" ng-model="formMap.val"/>
 				</div>
+				<div>
+
 				<button type="submit" class="btn btn-success btn-block" ng-class="vibrationsLoaded ? '' : 'disabled'">
 					<span ng-show="texteValider == 'Chargement'">
 						<i class="glyphicon glyphicon-refresh spinning"></i>
@@ -40,6 +42,31 @@
             		{{ texteValider}}
 				</button>
 			</form>
+
+	</div>
+
+</br>
+<lable>(optional:show data inside a rectangular area specified by double clicking the mouse at the topleft corner then downright corner of the area)</lable>
+</br>
+</br>
+<p>
+	<lable>minLat</lable>
+	<input id="minLat" class="form-control" type="number" ng-model="minLat"/>
+</p>
+<p>
+	<lable>minLat</lable>
+	<input id="maxLat" class="form-control" type="number" ng-model="maxLat"/>
+</p>
+<p>
+	<lable>minLat</lable>
+	<input id="minLng" class="form-control" type="number" ng-model="minLng"/>
+</p>
+<p>
+	<lable>minLat</lable>
+	<input id="maxLng" class="form-control" type="number" ng-model="maxLng"/>
+</p>
+
+<button ng-click="getVibrationsFromLatLng()">Test</button>
 		</div>
 
 		<div class="col-sm-10">

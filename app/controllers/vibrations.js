@@ -74,6 +74,30 @@ exports.getVibrationsFromVal = function(req, res, next) {
     });
 };
 
+exports.getVibrationsFromLatLng = function(req,res,next){
+	var query = Vibration.find({});
+	var latLngIsDefined = req.params.minLat !== undefined || req.params.minLat !== null &&
+  req.params.minLng !== undefined || req.params.minLng !== null
+	&& req.params.maxLat !== undefined || req.params.maxLat !== null
+	&& req.params.maxLng !== undefined || req.params.maxLng !== null;
+  var sLat,bLat,sLng,bLng;
+  console.log(req.params.minLat,req.params.maxLat,req.params.minLng,req.params.maxLng)
+  sLat=Math.min(req.params.maxLat,req.params.minLat);
+  bLat=Math.max(req.params.maxLat,req.params.minLat);
+  sLng=Math.min(req.params.maxLng,req.params.minLng);
+  bLng=Math.max(req.params.maxLng,req.params.minLng);
+	if(latLngIsDefined){
+		query= Vibration.find({}).where('lat').gte(sLat).lte(bLat).where('lng').gte(sLng).lte(bLng);
+	}
+	query.exec(function(err,docs){
+		if(err){
+			handleError(res,err.message,"Failed to get vibrations.");
+		}else{
+			res.status(201).json(docs);
+		}
+	});
+};
+
 exports.deleteAll = function(req, res, next) {
   Vibration.find({}).remove(function(err, result) {
      if (err) {

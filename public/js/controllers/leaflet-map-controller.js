@@ -25,6 +25,7 @@ angular.module('potholess')
     var mymap = L.map('mapid').setView([45.759722, 4.84222], 13);
     var circles;
     var polygons;
+    var recording = false;
 
     //définition des couleurs
     couleurs = ['green', 'yellow', 'orange', 'red', 'black'];
@@ -70,6 +71,34 @@ angular.module('potholess')
         $scope.vibrationsLoaded = true;
     }
 
+    function onMapClick(e){
+			if(!recording){
+				var str=e.latlng.toString();
+				var start=str.indexOf("(");
+				var middle=str.indexOf(",");
+				var end=str.indexOf(")");
+				recording=true;firstPoint=e.latlng;
+				messege = "double click to add a second point";
+				$scope.minLat=parseFloat(str.substring(start+1,middle));
+        minLat.value=str.substring(start+1,middle);
+        $scope.minLng=parseFloat(str.substring(middle+2,end));
+				minLng.value=str.substring(middle+2,end);
+			}else{
+				var str=e.latlng.toString();
+				var start=str.indexOf("(");
+				var middle=str.indexOf(",");
+				var end=str.indexOf(")");
+				recording=false;secondPoint=e.latlng;
+				messege = "double click to restart";
+        $scope.maxLat=parseFloat(str.substring(start+1,middle));
+				maxLat.value=str.substring(start+1,middle);
+        $scope.maxLng=parseFloat(str.substring(middle+2,end));
+				maxLng.value=str.substring(middle+2,end);
+			}
+      console.log($scope.minLat,$scope.maxLat,$scope.minLng,$scope.maxLng);
+			//mymap.redraw();
+}
+
     var city, road;
     $scope.reverseLocation = function(lat, lng) {
         OpenStreetMap.reverseLocation(lat, lng).then(function(doc) {
@@ -91,11 +120,11 @@ angular.module('potholess')
             alert(response);
         });
     };
-	
+
 	 //Affiche satellite
-    
+
     $scope.satAffiche = false;
-    
+
     $scope.showSat = function() {
         $scope.satAffiche = !$scope.satAffiche;
         googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
@@ -103,7 +132,7 @@ angular.module('potholess')
     subdomains:['mt0','mt1','mt2','mt3']
 }).addTo(mymap);
     }
-    
+
     $scope.hideSat = function() {
         $scope.satAffiche = !$scope.satAffiche;
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
@@ -146,4 +175,21 @@ angular.module('potholess')
         polygons.addTo(mymap);
         $scope.texteShow = "Afficher travaux";
     };
+    mymap.on('dblclick', onMapClick);
+
+    $scope.minLat;
+    $scope.maxLat;
+    $scope.minLng;
+    $scope.maxLng;
+    $scope.getVibrationsFromLatLng = function() {
+
+        Vibrations.getVibrationsFromLatLng($scope.minLat,$scope.maxLat, $scope.minLng, $scope.maxLng).then(function(doc) {
+            $scope.vibrations = doc.data;
+            mymap.removeLayer(circles);
+            addPoints();
+        }, function(response) {
+            alert(response);
+        });
+    };
+
 });

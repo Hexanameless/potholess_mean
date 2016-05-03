@@ -31,7 +31,16 @@ angular.module('potholess')
         } else {
             var url = "/vibrations/" + val;
         }
-        
+
+        return $http.get(url).
+            then(function(response) {
+                return response;
+            }, function(response) {
+                alert("Error finding vibrations.");
+            });
+    };
+    this.getVibrationsFromLatLng = function(minLat,maxLat, minLng, maxLng) {
+        var url = "/vibrations/"+minLat+"/"+minLng+"/"+maxLat+"/"+maxLng;
         return $http.get(url).
             then(function(response) {
                 return response;
