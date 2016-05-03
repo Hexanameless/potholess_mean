@@ -83,7 +83,7 @@ angular.module('potholess')
     $scope.hideTravaux = function() {
         $scope.travauxAffiche = !$scope.travauxAffiche;
         mymap.removeLayer(polygons);
-    }
+    };
 
     $scope.showTravaux = function() {
         $scope.travauxAffiche = !$scope.travauxAffiche;
