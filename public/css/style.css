@@ -25,6 +25,20 @@ body  {
     -webkit-animation: spin2 1s infinite linear;
 }
 
+@media screen and (max-width: 768px) {
+    .information, .potholess {
+        margin-right: auto;
+        margin-left: auto;
+        float: none;
+    }
+    body  {
+        padding-top: 116px;
+    }
+}
+
+.information, .potholess{
+    width: 115px;
+}
 
 span.glyphicon-question-sign {
     font-size: 1.3em;
