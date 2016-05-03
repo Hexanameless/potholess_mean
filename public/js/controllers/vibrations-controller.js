@@ -24,6 +24,7 @@ angular.module('potholess')
             {
                 date: "2016-01-05",
                 lat: 45.78201,
+                lng: 4.872431,
                 val: 3.2
             },
             {

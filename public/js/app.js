@@ -6,7 +6,7 @@ angular.module("potholess", ['ngRoute'])
             controller: "MapController",
             resolve: {
                 vibrations: function(Vibrations) {
-                    return Vibrations.getAllVibrations();
+                    return Vibrations.getVibrations(1, null, null);
                 }
             }
         })
