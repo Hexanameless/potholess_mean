@@ -1,10 +1,10 @@
 var mongoose =  require('mongoose');
 
 var VibrationSchema = new mongoose.Schema({
-    date: Date,
-    lat: Number,
-    lng: Number,
-    val: Number
+    date: {type: Date, default: Date.now},
+    lat: {type: Number, default: 0},
+    lng: {type: Number, default: 0},
+    val: {type: Number, default: 0}
   }, {
     collection: 'vibrations'
 });
