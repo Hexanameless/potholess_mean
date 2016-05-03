@@ -39,16 +39,16 @@
 
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <div class="navbar-brand potholess" href="#/">potholess</div>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a class="information" href="" data-toggle="modal" data-target=".myModal"><span class="glyphicon glyphicon-question-sign"></span> &#192; propos </a></li>
-        </ul>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand" href="#/">potholess</div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="information" href="" data-toggle="modal" data-target=".myModal"><span class="glyphicon glyphicon-question-sign"></span> &#192; propos </a></li>
+            </ul>
         </div>
     </nav>
-   
+
 <div class="container-fluid">
     <!-- Dynamically render templates -->
     <div ng-view>
@@ -66,15 +66,27 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel" style="text-align:center;">potholess, c'est quoi ?</h4>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body" style="text-align:center;">
+            <p>
+                potholess est un système révolutionnaire permettant de détecter automatiquement et de visualiser les déformations de la chaussée comme des nids de poule, fissures ou autres.
+            </p>
+            <h4>« Trust me I'm an engineer »</h4>
+            <p>
+                Un dispositif embarqué dans un véhicule subit les vibrations de la route et les enregistre dans une base de données. La visualisation de ces données est ensuite possible grâce à ce site internet.
+            </p>
+            <p>
+                Vous avez la possibilité de filtrer les données sur la date et sur l'intensité de la vibration. Si une vibration est verte, la route est relativement peu endommagée à cet endroit, à l'inverse, si une vibration est noire, il y a de forte probabilité pour que la route soit en mauvais état.
+                Vous pouvez aussi visualiser les routes actuellement en travaux grâce aux données du Grand Lyon mises à jour quotidiennement.
+            </p>
+            <p>
+                <span style="font-weight:bold">Hexanameless</span> - E. Bai, G. Berthier, M. Christ, A. Menella, S. Mankai, Y. Tang
+            </p>
+
+
+
           </div>
-          <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div> -->
         </div>
       </div>
     </div>

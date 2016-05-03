@@ -31,13 +31,13 @@
 				</div>
 				<div class="form-group">
 					<label>Intensité : <span ng-style="couleurSlider">{{formMap.val}}</span></label>
-					<input type="range" min="1" max="5" step="0.1" ng-model="formMap.val"/>
+					<input type="range" min="1" max="5" step="1" ng-model="formMap.val"/>
 				</div>
 				<button type="submit" class="btn btn-success btn-block" ng-class="vibrationsLoaded ? '' : 'disabled'">
 					<span ng-show="texteValider == 'Chargement'">
 						<i class="glyphicon glyphicon-refresh spinning"></i>
 					</span>
-            		{{ texteValider}}
+            		{{texteValider}}
 				</button>
 			</form>
 		</div>
@@ -45,5 +45,4 @@
 		<div class="col-sm-10">
 			<div id="mapid" class="map-size"></div>
 		</div>
-
 	</div>
