@@ -91,6 +91,29 @@ angular.module('potholess')
             alert(response);
         });
     };
+	
+	 //Affiche satellite
+    
+    $scope.satAffiche = false;
+    
+    $scope.showSat = function() {
+        $scope.satAffiche = !$scope.satAffiche;
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+}).addTo(mymap);
+    }
+    
+    $scope.hideSat = function() {
+        $scope.satAffiche = !$scope.satAffiche;
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery ? <a href="http://mapbox.com">Mapbox</a>',
+        id: 'mapbox.streets'
+    }).addTo(mymap);
+    }
 
     //Gestion des travaux
     $scope.texteHide = "Masquer travaux";
