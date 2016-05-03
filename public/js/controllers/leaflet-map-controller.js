@@ -62,7 +62,7 @@ angular.module('potholess')
                 color: colorVal,
                 fillOpacity: 0.8
             }).addTo(circles);
-            circle.bindPopup("<b>Date : </b>"+$filter('date')($scope.vibrations[i].date, 'dd/MM/yyyy') + "<br>"+"<b>Intensité : </b>"+$scope.vibrations[i].val);
+            circle.bindPopup("<b>Date : </b>"+$filter('date')($scope.vibrations[i].date, 'dd/MM/yyyy') + "<br>"+"<b>Intensité : </b>"+$scope.vibrations[i].val + "<br>"+"<b>Vitesse : </b>" + $scope.vibrations[i].spd + " km/h");
         }
         circles.addTo(mymap);
 
