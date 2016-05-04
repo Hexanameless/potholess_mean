@@ -27,7 +27,7 @@ angular.module('potholess')
     var polygons;
 
     //définition des couleurs
-    couleurs = ['#FFB114', '#E86E0C', '#FF2F00', '#E8013C', 'black'];
+    couleurs = ['#FFDC14', '#E86E0C', '#FF2F00', '#E8013C', 'black'];
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
